@@ -1,13 +1,13 @@
 import cv2
 from ultralytics import YOLO, solutions
 
-model = YOLO("run/run/runs/detect/train2/weights/best.pt")
-cap = cv2.VideoCapture("background video _ people _ walking _.mp4")
+model = YOLO("best.pt")
+cap = cv2.VideoCapture("sample_video.mp4")
 w, h, fps = (int(cap.get(x)) for x in (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT, cv2.CAP_PROP_FPS))
 
 line_points = [(0, h/2), (w, h/2)]
 
-video_writer = cv2.VideoWriter("object_counting_output.mp4", cv2.VideoWriter_fourcc(*"mp4v"), fps/2, (w, h))
+video_writer = cv2.VideoWriter("output.mp4", cv2.VideoWriter_fourcc(*"mp4v"), fps/2, (w, h))
 
 # Init Object Counter
 counter = solutions.ObjectCounter(
